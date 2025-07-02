@@ -11,6 +11,8 @@
       "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/apps/resume",
+        "baseHref": "/resume/",
+        "deployUrl": "/resume/",
         "browser": "apps/resume/src/main.ts",
         "polyfills": ["zone.js"],
         "tsConfig": "apps/resume/tsconfig.app.json",
