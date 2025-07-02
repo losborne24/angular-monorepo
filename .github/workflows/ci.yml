@@ -31,8 +31,8 @@ jobs:
           node-version: 20
           cache: 'npm'
 
-      - run: yarn ci
-      - run: yarn cypress install
+      - run: npx ci
+      - run: npx cypress install
       - uses: nrwl/nx-set-shas@v4
 
       # Prepend any command with "nx-cloud record --" to record its logs to Nx Cloud
