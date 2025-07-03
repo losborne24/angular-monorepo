@@ -10,8 +10,8 @@ export default defineConfig({
         production: 'yarn nx run resume:serve-static',
       },
       ciWebServerCommand: 'yarn nx run resume:serve-static',
-      ciBaseUrl: 'http://localhost:4201',
+      ciBaseUrl: 'http://localhost:4200',
     }),
-    baseUrl: 'http://localhost:4201',
+    baseUrl: 'http://localhost:4200',
   },
 });

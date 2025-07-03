@@ -86,7 +86,7 @@
       "executor": "@nx/web:file-server",
       "options": {
         "buildTarget": "resume:build",
-        "port": 4201,
+        "port": 4200,
         "staticFilePath": "dist/apps/resume",
         "spa": true
       }
