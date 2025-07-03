@@ -24,11 +24,22 @@ jobs:
       - name: 📦 Install dependencies
         run: yarn
 
-      - name: 🏗️ Build the app
-        run: yarn nx build home
+      - name: 🛠️ Build the app
+        run: yarn nx build home --configuration=production
+
+      - name: 🛠️ Build resume app
+        run: yarn nx build resume --configuration=production
+
+      - name: 📁 Copy apps to publish folder
+        run: |
+          mkdir -p public-deploy/home
+          mkdir -p public-deploy/admin
+          cp -r dist/apps/home/* public-deploy/home/
+          cp -r dist/apps/admin/* public-deploy/admin/
 
       - name: 🚀 Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: dist/apps/home
+          publish_dir: ./public-deploy
+          keep_files: false
