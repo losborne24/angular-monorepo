@@ -11,6 +11,8 @@
       "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/apps/home",
+        "baseHref": "/",
+        "deployUrl": "/",
         "browser": "apps/home/src/main.ts",
         "polyfills": ["zone.js"],
         "tsConfig": "apps/home/tsconfig.app.json",

@@ -1,40 +1,50 @@
-name: Deploy home to GitHub Pages
+name: Deploy Home (/) and Resume (/resume) to GitHub Pages
 
 on:
   push:
     branches:
       - main
-
-permissions:
-  contents: write
+    paths:
+      - 'apps/**'
+      - 'libs/**'
+      - 'angular.json'
+      - 'workspace.json'
+      - 'project.json'
+      - 'package.json'
+      - 'yarn.lock'
+      - 'tsconfig.base.json'
+      - 'nx.json'
 
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
 
+    permissions:
+      contents: write
+
     steps:
-      - name: ⬇️ Checkout repo
+      - name: ⬇️ Checkout code
         uses: actions/checkout@v4
 
-      - name: 🟢 Setup Node
+      - name: 🟢 Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 22
+          node-version: 18
 
-      - name: 📦 Install dependencies
-        run: yarn
+      - name: 📦 Install dependencies (Yarn)
+        run: yarn install --frozen-lockfile
 
-      - name: 🛠️ Build the app
+      - name: 🛠️ Build home app
         run: yarn nx build home --configuration=production
 
       - name: 🛠️ Build resume app
         run: yarn nx build resume --configuration=production
 
-      - name: 📁 Copy apps to publish folder
+      - name: 📁 Copy built apps to public-deploy
         run: |
-          mkdir -p public-deploy/home
+          mkdir -p public-deploy
+          cp -r dist/apps/home/* public-deploy/
           mkdir -p public-deploy/resume
-          cp -r dist/apps/home/* public-deploy/home/
           cp -r dist/apps/resume/* public-deploy/resume/
 
       - name: 🚀 Deploy to GitHub Pages
