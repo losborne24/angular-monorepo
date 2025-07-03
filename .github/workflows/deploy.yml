@@ -33,9 +33,9 @@ jobs:
       - name: 📁 Copy apps to publish folder
         run: |
           mkdir -p public-deploy/home
-          mkdir -p public-deploy/admin
+          mkdir -p public-deploy/resume
           cp -r dist/apps/home/* public-deploy/home/
-          cp -r dist/apps/admin/* public-deploy/admin/
+          cp -r dist/apps/resume/* public-deploy/resume/
 
       - name: 🚀 Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
