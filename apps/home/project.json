@@ -84,7 +84,7 @@
       "options": {
         "buildTarget": "home:build",
         "port": 4200,
-        "staticFilePath": "dist/apps/home/browser",
+        "staticFilePath": "dist/apps/home",
         "spa": true
       }
     }

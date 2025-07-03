@@ -43,9 +43,9 @@ jobs:
       - name: 📁 Copy built apps to public-deploy
         run: |
           mkdir -p public-deploy
-          cp -r dist/apps/home/browser/* public-deploy/
+          cp -r dist/apps/home/* public-deploy/
           mkdir -p public-deploy/resume
-          cp -r dist/apps/resume/browser/* public-deploy/resume/
+          cp -r dist/apps/resume/* public-deploy/resume/
 
       - name: 🚀 Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
