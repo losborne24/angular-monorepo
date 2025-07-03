@@ -7,20 +7,22 @@
   "tags": [],
   "targets": {
     "build": {
-      "executor": "@angular/build:application",
+      "executor": "@angular-devkit/build-angular:browser",
       "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/apps/home",
+        "index": "apps/home/src/index.html",
         "baseHref": "/",
         "deployUrl": "/",
-        "browser": "apps/home/src/main.ts",
+        "main": "apps/home/src/main.ts",
         "polyfills": ["zone.js"],
         "tsConfig": "apps/home/tsconfig.app.json",
         "inlineStyleLanguage": "scss",
         "assets": [
           {
             "glob": "**/*",
-            "input": "apps/home/public"
+            "input": "apps/home/public",
+            "output": "/"
           }
         ],
         "styles": ["apps/home/src/styles.scss"]
@@ -50,8 +52,7 @@
       "defaultConfiguration": "production"
     },
     "serve": {
-      "continuous": true,
-      "executor": "@angular/build:dev-server",
+      "executor": "@angular-devkit/build-angular:dev-server",
       "configurations": {
         "production": {
           "buildTarget": "home:build:production"
@@ -63,13 +64,16 @@
       "defaultConfiguration": "development"
     },
     "extract-i18n": {
-      "executor": "@angular/build:extract-i18n",
+      "executor": "@angular-devkit/build-angular:extract-i18n",
       "options": {
         "buildTarget": "home:build"
       }
     },
     "lint": {
-      "executor": "@nx/eslint:lint"
+      "executor": "@nx/eslint:lint",
+      "options": {
+        "lintFilePatterns": ["apps/home/**/*.{ts,tsx,js,jsx}"]
+      }
     },
     "test": {
       "executor": "@nx/vite:test",
@@ -79,7 +83,6 @@
       }
     },
     "serve-static": {
-      "continuous": true,
       "executor": "@nx/web:file-server",
       "options": {
         "buildTarget": "home:build",

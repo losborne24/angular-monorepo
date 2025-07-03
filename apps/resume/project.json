@@ -7,20 +7,22 @@
   "tags": [],
   "targets": {
     "build": {
-      "executor": "@angular/build:application",
+      "executor": "@angular-devkit/build-angular:browser",
       "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/apps/resume",
+        "index": "apps/resume/src/index.html",
         "baseHref": "/resume/",
         "deployUrl": "/resume/",
-        "browser": "apps/resume/src/main.ts",
+        "main": "apps/resume/src/main.ts",
         "polyfills": ["zone.js"],
         "tsConfig": "apps/resume/tsconfig.app.json",
         "inlineStyleLanguage": "scss",
         "assets": [
           {
             "glob": "**/*",
-            "input": "apps/resume/public"
+            "input": "apps/resume/public",
+            "output": "/"
           }
         ],
         "styles": ["apps/resume/src/styles.scss"]
@@ -50,8 +52,7 @@
       "defaultConfiguration": "production"
     },
     "serve": {
-      "continuous": true,
-      "executor": "@angular/build:dev-server",
+      "executor": "@angular-devkit/build-angular:dev-server",
       "configurations": {
         "production": {
           "buildTarget": "resume:build:production"
@@ -63,13 +64,16 @@
       "defaultConfiguration": "development"
     },
     "extract-i18n": {
-      "executor": "@angular/build:extract-i18n",
+      "executor": "@angular-devkit/build-angular:extract-i18n",
       "options": {
         "buildTarget": "resume:build"
       }
     },
     "lint": {
-      "executor": "@nx/eslint:lint"
+      "executor": "@nx/eslint:lint",
+      "options": {
+        "lintFilePatterns": ["apps/resume/**/*.{ts,tsx,js,jsx}"]
+      }
     },
     "test": {
       "executor": "@nx/vite:test",
@@ -79,7 +83,6 @@
       }
     },
     "serve-static": {
-      "continuous": true,
       "executor": "@nx/web:file-server",
       "options": {
         "buildTarget": "resume:build",
