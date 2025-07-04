@@ -1,7 +1,7 @@
 import { getGreeting } from '../support/app.po';
 
 describe('resume-e2e', () => {
-  beforeEach(() => cy.visit('/resume/'));
+  beforeEach(() => cy.visit('/angular-monorepo/resume/'));
 
   it('should display welcome message', () => {
     // Custom command example, see `../support/commands.ts` file
