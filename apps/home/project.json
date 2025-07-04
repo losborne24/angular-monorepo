@@ -12,8 +12,7 @@
       "options": {
         "outputPath": "dist/apps/home",
         "index": "apps/home/src/index.html",
-        "baseHref": "/",
-        "deployUrl": "/",
+        "baseHref": "/angular-monorepo/",
         "main": "apps/home/src/main.ts",
         "polyfills": ["zone.js"],
         "tsConfig": "apps/home/tsconfig.app.json",
