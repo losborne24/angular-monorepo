@@ -7,23 +7,32 @@
       <p>UI Developer</p>
     </section>
     <section>
-      <h3>EXPERIENCE</h3>
+      <h3 class="text-primary">EXPERIENCE</h3>
     </section>
     <section>
-      <h3>EDUCATION</h3>
+      <h3 class="text-primary">EDUCATION</h3>
     </section>
   </div>
   <div class="basis-1/3">
     <section>
-      <p>Surrey, England</p>
-      <p>+44 7494 391933</p>
-      <a href="mailto:osborneleith@gmail.com">osborneleith&#64;gmail.com</a>
-      <p>[LinkedIn] [Github] [Codepen] [Share]</p>
+      @for (detail of contactDetails; track $index) {
+      <div class="flex gap-2">
+        <fa-icon [icon]="detail.icon"></fa-icon>
+        <p>{{detail.text}}</p>
+      </div>
+      }
+      <div>
+        <fa-icon [icon]="icon.faLinkedin"></fa-icon>
+        <fa-icon [icon]="icon.faGithub"></fa-icon>
+        <fa-icon [icon]="icon.faGlobe"></fa-icon>
+        <fa-icon [icon]="icon.faCodepen"></fa-icon>
+        <fa-icon [icon]="icon.faLink"></fa-icon>
+      </div>
     </section>
     <section>
-      <h3>CERTIFICATIONS</h3>
-      <h3>ACHIEVEMENTS</h3>
-      <h3>VOLUNTEERING</h3>
+      <h3 class="text-primary">CERTIFICATIONS</h3>
+      <h3 class="text-primary">ACHIEVEMENTS</h3>
+      <h3 class="text-primary">VOLUNTEERING</h3>
     </section>
   </div>
 </div>
