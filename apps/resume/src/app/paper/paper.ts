@@ -60,6 +60,5 @@ export class Paper {
     { icon: Icon.faGithub },
     { icon: Icon.faGlobe },
     { icon: Icon.faCodepen },
-    { icon: Icon.faLink },
   ];
 }

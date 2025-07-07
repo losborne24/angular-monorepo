@@ -1,19 +1,117 @@
 <div
-  class="flex-row paper-container card bg-white font-serif text-neutral p-12"
+  class="flex-row paper-container card bg-base-100 font-serif text-neutral overflow-hidden"
 >
-  <div class="basis-2/3">
+  <div class="basis-7/10 p-8 flex flex-col gap-8">
     <section>
-      <h1 class="text-5xl font-bold mb-2">Leith Osborne</h1>
-      <p>UI Developer</p>
+      <h1 class="text-5xl mb-2"><strong>Leith Osborne</strong></h1>
+      <h3>Full-Stack UI Engineer</h3>
     </section>
     <section>
-      <h3 class="text-primary">EXPERIENCE</h3>
+      <h3 class="text-primary"><strong>EXPERIENCE</strong></h3>
+      <div class="flex flex-col gap-2">
+        <div>
+          <h2><strong>OpenGamma</strong></h2>
+          <div class="flex items-center justify-between">
+            <h3>Full-Stack Engineer</h3>
+            <p class="text-xs">
+              Angular | Java | PostgreSQL | TypeScript | HTML | SCSS | Figma |
+              Node | AWS
+            </p>
+          </div>
+          <p class="text-[0.625rem]">JAN 2025 - PRESENT</p>
+        </div>
+
+        <ul>
+          <li>
+            <strong>Full UI Ownership</strong> – Backbone of a lean 1.5–3
+            developer team, holding complete UI ownership of the company’s
+            flagship SaaS product generating multi-million ARR.
+          </li>
+          <li>Simulate</li>
+          <li>Notifications</li>
+          <li>Dashboard filters</li>
+        </ul>
+
+        <div>
+          <div class="flex items-center justify-between">
+            <h3>UI Developer</h3>
+            <p class="text-xs">
+              Angular | TypeScript | HTML | SCSS | RxJS | AG Grid | Figma | Node
+              | AWS
+            </p>
+          </div>
+          <p class="text-[0.625rem]">APR 2022 - JAN 2025</p>
+        </div>
+
+        <ul>
+          <li>OGT migration</li>
+          <li>Static Data</li>
+          <li>Menu Customisation</li>
+          <li>Architectural Designs / Technical Planning</li>
+          <li>Figma Internal Component Library UX</li>
+          <li>AWS Quicksight Integration</li>
+        </ul>
+      </div>
+      <div class="flex flex-col gap-2">
+        <div>
+          <h2><strong>Policy Monitor Limited</strong></h2>
+          <div class="flex items-center justify-between">
+            <h3>Software Engineer</h3>
+            <p class="text-xs">
+              Angular | TypeScript | HTML | SCSS | Java | MySQL | Node | AWS
+            </p>
+          </div>
+          <p class="text-[0.625rem]">OCT 2020 - APR 2022</p>
+        </div>
+        <ul>
+          <li>
+            <strong>Key Individual Contributor</strong> – Played a central role
+            in developing the flagship B2B cybersecurity policy monitoring SaaS
+            solution
+          </li>
+          <li>
+            <strong>Frontend Modernization</strong> - Migrated a legacy Dojo.js
+            codebase to Angular 11, adopting modern technologies including NGXS,
+            RxJS, Angular Material and Storybook to improve scalability,
+            maintainability, and UI consistency.
+          </li>
+          <li>
+            <strong>API Integration</strong> – Integrated frontend components
+            with a Java-based backend API and external platforms including Xero
+            and GoCardless for accounting and payment processing functionality.
+          </li>
+          <li>
+            <strong>Cloud Infrastructure</strong> – Upgraded AWS CloudFormation
+            templates to support automated, repeatable provisioning of cloud
+            environments.
+          </li>
+          <li>
+            <strong> DevOps / CI/CD</strong> – Streamlined Bitbucket Pipelines
+            to optimize build and deployment workflows, reducing release cycle
+            time and improving reliability.
+          </li>
+        </ul>
+      </div>
     </section>
-    <section>
-      <h3 class="text-primary">EDUCATION</h3>
+    <section class="flex flex-col gap-4">
+      <div>
+        <h3 class="text-primary"><strong>EDUCATION</strong></h3>
+        <h2><strong>Durham University</strong></h2>
+        <p class="text-[0.625rem]">OCT 2017 - JUL 2020</p>
+        <p>BSc Computer Science, First Class Honours</p>
+      </div>
+      <div>
+        <h2><strong>The Ashcombe School, Surrey</strong></h2>
+        <p class="text-[0.625rem]">SEP 2010 - AUG 2017</p>
+        <p>
+          A levels: Further Mathematics (A*), Mathematics (A*), Computer Science
+          (A)
+        </p>
+        <p>GCSEs: 9 GCSEs at grades A*-B, including Mathematics and English</p>
+      </div>
     </section>
   </div>
-  <div class="basis-1/3">
+  <div class="basis-3/10 bg-neutral text-neutral-content p-8">
     <section>
       @for (detail of contactDetails; track $index) {
       <div class="flex gap-2">
@@ -28,9 +126,9 @@
       </div>
     </section>
     <section>
-      <h3 class="text-primary">CERTIFICATIONS</h3>
-      <h3 class="text-primary">ACHIEVEMENTS</h3>
-      <h3 class="text-primary">VOLUNTEERING</h3>
+      <h3 class="text-primary"><strong>CERTIFICATIONS</strong></h3>
+      <h3 class="text-primary"><strong>ACHIEVEMENTS</strong></h3>
+      <h3 class="text-primary"><strong>VOLUNTEERING</strong></h3>
     </section>
   </div>
 </div>
