@@ -24,12 +24,19 @@ export const Icon = {
   faLocationDot,
   faEnvelope,
   faPhone,
-};
+} as const satisfies Record<string, IconDefinition>;
+
 export interface ContactDetail {
   icon: IconDefinition;
   text: string;
   href?: string;
 }
+export interface Links {
+  icon: IconDefinition;
+  href?: string;
+  link?: string;
+}
+
 @Component({
   selector: 'app-paper',
   imports: [CommonModule, FontAwesomeModule],
@@ -47,5 +54,12 @@ export class Paper {
       text: 'osborneleith@gmail.com',
       href: 'mailto:osborneleith@gmail.com',
     },
+  ];
+  links: Links[] = [
+    { icon: Icon.faLinkedin },
+    { icon: Icon.faGithub },
+    { icon: Icon.faGlobe },
+    { icon: Icon.faCodepen },
+    { icon: Icon.faLink },
   ];
 }

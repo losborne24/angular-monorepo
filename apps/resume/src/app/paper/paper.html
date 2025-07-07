@@ -22,11 +22,9 @@
       </div>
       }
       <div>
-        <fa-icon [icon]="icon.faLinkedin"></fa-icon>
-        <fa-icon [icon]="icon.faGithub"></fa-icon>
-        <fa-icon [icon]="icon.faGlobe"></fa-icon>
-        <fa-icon [icon]="icon.faCodepen"></fa-icon>
-        <fa-icon [icon]="icon.faLink"></fa-icon>
+        @for (link of links; track $index) {
+        <fa-icon [icon]="link.icon"></fa-icon>
+        }
       </div>
     </section>
     <section>
