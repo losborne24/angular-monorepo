@@ -15,6 +15,7 @@
     "@fortawesome/free-brands-svg-icons": "^6.7.2",
     "@fortawesome/free-solid-svg-icons": "^6.7.2",
     "rxjs": "~7.8.0",
+    "tailwind-scrollbar": "^4.0.2",
     "zone.js": "~0.15.0"
   },
   "devDependencies": {
