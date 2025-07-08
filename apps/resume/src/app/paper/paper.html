@@ -1,155 +1,114 @@
 <div
   class="flex-row paper-container card bg-base-100 font-serif text-neutral overflow-hidden"
 >
-  <div class="basis-7/10 p-8 flex flex-col gap-8">
+  <div class="flex flex-col flex-none basis-[70%] p-8 gap-8 text-base-content">
     <section>
       <h1 class="text-5xl mb-2"><strong>Leith Osborne</strong></h1>
       <h3>Full-Stack / UI Engineer</h3>
     </section>
-    <section>
+    <section class="flex flex-col gap-2">
       <h3 class="text-primary"><strong>EXPERIENCE</strong></h3>
-      <div class="flex flex-col gap-2">
+      <div class="flex flex-col gap-4">
+        @for(company of experience; track $index) {
         <div>
-          <h2><strong>OpenGamma</strong></h2>
-          <div class="flex items-center justify-between">
-            <h3>Full-Stack Engineer</h3>
-            <p class="text-xs">
-              Angular | Java | PostgreSQL | TypeScript | HTML | SCSS | Figma |
-              Node | AWS
-            </p>
+          <h2><strong>{{company.companyName}}</strong></h2>
+          <div class="flex flex-col gap-2 text-base-content text-opacity-75">
+            @for(position of company.positions; track $index) {
+            <div>
+              <div class="flex items-center justify-between">
+                <h3 class="text-base-content">{{position.position}}</h3>
+                <p class="text-xs">
+                  @for (tech of position.techStack; track $index; let isLast =
+                  $last) { {{tech }} @if(!isLast) { |} }
+                </p>
+              </div>
+              <p class="text-[0.625rem]">{{position.period}}</p>
+            </div>
+            <ul>
+              @for(contribution of position.contributions; track $index) {
+              <li>
+                <strong>{{contribution.category}}</strong>
+                – {{contribution.contribution }}
+              </li>
+              }
+            </ul>
+            }
           </div>
-          <p class="text-[0.625rem]">JAN 2025 - PRESENT</p>
         </div>
-
-        <ul>
-          <li>
-            <strong>Full UI Ownership</strong> – Backbone of a lean 1.5–3
-            developer team, holding complete UI ownership of the company’s
-            flagship fintech SaaS product generating multi-million ARR.
-          </li>
-          <li>Dynamic profiles</li>
-          <li>Simulate</li>
-          <li>Notifications</li>
-          <li>Dashboard filters</li>
-          <li>AWS Quicksight Integration</li>
-        </ul>
-
-        <div>
-          <div class="flex items-center justify-between">
-            <h3>UI Developer</h3>
-            <p class="text-xs">
-              Angular | TypeScript | HTML | SCSS | RxJS | AG Grid | Figma | Node
-              | AWS
-            </p>
-          </div>
-          <p class="text-[0.625rem]">APR 2022 - JAN 2025</p>
-        </div>
-
-        <ul>
-          <li>
-            <strong>Product Development</strong> – Contributed to the design and
-            delivery of client-facing risk tools, including a portfolio editor
-            and on-demand calculation runner, allowing users to perform
-            real-time stressed margin analysis on modified portfolios.
-          </li>
-          <li>
-            <strong>Configuration & Settings Management</strong> – Built a
-            dynamic, tenant-level settings interface using editable AG Grid
-            tables to manage complex business and system configurations,
-            incorporating custom field components, validations, attributes, and
-            integrated review/approval workflows.
-          </li>
-          <li>
-            <strong>Cloud Hosting</strong> – Delivered a scalable, static cloud
-            hosting solution for the Angular-based Treasury SPA using Amazon S3
-            and CloudFront, facilitating its evolution into the organization’s
-            core platform.
-          </li>
-          <li>
-            <strong>Design Systems</strong> – Developed a Figma component
-            library derived from our reusable, stateless UI components,
-            promoting design-development consistency and streamlining mockup
-            creation.
-          </li>
-        </ul>
-      </div>
-      <div class="flex flex-col gap-2">
-        <div>
-          <h2><strong>Policy Monitor Limited</strong></h2>
-          <div class="flex items-center justify-between">
-            <h3>Software Engineer</h3>
-            <p class="text-xs">
-              Angular | TypeScript | HTML | SCSS | Java | MySQL | Node | AWS
-            </p>
-          </div>
-          <p class="text-[0.625rem]">OCT 2020 - APR 2022</p>
-        </div>
-        <ul>
-          <li>
-            <strong>Key Individual Contributor</strong> – Played a central role
-            in developing the flagship B2B cybersecurity policy monitoring SaaS
-            solution
-          </li>
-          <li>
-            <strong>Frontend Modernization</strong> – Migrated a legacy Dojo.js
-            codebase to Angular 11, adopting modern technologies including NGXS,
-            RxJS, Angular Material and Storybook to improve scalability,
-            maintainability, and UI consistency.
-          </li>
-          <li>
-            <strong>API Integration</strong> – Integrated frontend components
-            with a Java-based backend API and external platforms including Xero
-            and GoCardless for accounting and payment processing functionality.
-          </li>
-          <li>
-            <strong>Cloud Infrastructure</strong> – Upgraded AWS CloudFormation
-            templates to support automated, repeatable provisioning of cloud
-            environments.
-          </li>
-          <li>
-            <strong> DevOps / CI/CD</strong> – Streamlined Bitbucket Pipelines
-            to optimize build and deployment workflows, reducing release cycle
-            time and improving reliability.
-          </li>
-        </ul>
-      </div>
-    </section>
-    <section class="flex flex-col gap-4">
-      <div>
-        <h3 class="text-primary"><strong>EDUCATION</strong></h3>
-        <h2><strong>Durham University</strong></h2>
-        <p class="text-[0.625rem]">OCT 2017 - JUL 2020</p>
-        <p>BSc Computer Science, First Class Honours</p>
-      </div>
-      <div>
-        <h2><strong>The Ashcombe School, Surrey</strong></h2>
-        <p class="text-[0.625rem]">SEP 2010 - AUG 2017</p>
-        <p>
-          A levels: Further Mathematics (A*), Mathematics (A*), Computer Science
-          (A)
-        </p>
-        <p>GCSEs: 9 GCSEs at grades A*-B, including Mathematics and English</p>
-      </div>
-    </section>
-  </div>
-  <div class="basis-3/10 bg-neutral text-neutral-content p-8">
-    <section>
-      @for (detail of contactDetails; track $index) {
-      <div class="flex gap-2">
-        <fa-icon [icon]="detail.icon"></fa-icon>
-        <p>{{detail.text}}</p>
-      </div>
-      }
-      <div>
-        @for (link of links; track $index) {
-        <fa-icon [icon]="link.icon"></fa-icon>
         }
       </div>
     </section>
+    <section class="flex flex-col gap-2">
+      <h3 class="text-primary"><strong>LINKS</strong></h3>
+      <div class="flex flex-col text-base-content">
+        @for (link of links; track $index) {
+        <div class="flex items-center gap-2 text-base-content text-opacity-90">
+          <fa-icon [icon]="link.icon"></fa-icon>
+          <a target="_blank" [href]="link.href">
+            <span class="text-secondary">{{link.href}}</span>
+          </a>
+        </div>
+        }
+      </div>
+    </section>
+  </div>
+  <div
+    class="flex flex-col flex-none basis-[30%] bg-neutral text-neutral-content text-opacity-90 p-8 gap-8"
+  >
     <section>
-      <h3 class="text-primary"><strong>CERTIFICATIONS</strong></h3>
-      <h3 class="text-primary"><strong>ACHIEVEMENTS</strong></h3>
-      <h3 class="text-primary"><strong>VOLUNTEERING</strong></h3>
+      @for (detail of contactDetails; track $index) {
+      <div class="flex gap-2 items-center">
+        <fa-icon [icon]="detail.icon"></fa-icon>
+        @if(detail.href) {
+        <a target="_blank" class="text-secondary" [href]="detail.href"
+          >{{detail.text}}</a
+        >
+        } @else {
+        <p>{{detail.text}}</p>
+        }
+      </div>
+      }
+    </section>
+    <section class="flex flex-col gap-2">
+      <h3 class="text-accent"><strong>EDUCATION</strong></h3>
+      <div class="flex flex-col gap-4">
+        <div class="flex flex-col gap-2">
+          <div>
+            <h2>
+              <strong class="text-neutral-content">Durham University</strong>
+            </h2>
+            <p class="text-[0.625rem]">OCT 2017 - JUL 2020</p>
+          </div>
+          <p>BSc Computer Science, First Class Honours</p>
+        </div>
+        <div class="flex flex-col gap-2">
+          <div>
+            <h2>
+              <strong class="text-neutral-content"
+                >The Ashcombe School, Surrey</strong
+              >
+            </h2>
+            <p class="text-[0.625rem]">SEP 2010 - AUG 2017</p>
+          </div>
+          <ul>
+            <li>Further Mathematics A*</li>
+            <li>Mathematics A*</li>
+            <li>Computer Science A</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+    <section class="flex flex-col gap-8">
+      @for(section of rightPanel; track $index ){
+      <div class="flex flex-col gap-2">
+        <h3 class="text-accent"><strong>{{section.header}}</strong></h3>
+        <ul>
+          @for(item of section.items; track $index) {
+          <li>{{item}}</li>
+          }
+        </ul>
+      </div>
+      }
     </section>
   </div>
 </div>
