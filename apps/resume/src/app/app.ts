@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { Paper } from './paper/paper';
 
 @Component({
@@ -11,4 +11,8 @@ import { Paper } from './paper/paper';
 })
 export class App {
   protected title = 'resume';
+  dataTheme = signal<string>('corporate');
+  setTheme(theme: string) {
+    this.dataTheme.set(theme);
+  }
 }

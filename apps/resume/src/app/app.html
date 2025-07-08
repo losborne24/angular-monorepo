@@ -1,4 +1,16 @@
-<div data-theme="corporate">
+<div [attr.data-theme]="dataTheme()">
+  <div class="temp-container flex">
+    <button
+      class="btn btn-circle"
+      (click)="setTheme('corporate')"
+      aria-label="corporate"
+    ></button>
+    <button
+      class="btn btn-circle"
+      (click)="setTheme('synthwave')"
+      aria-label="synthwave"
+    ></button>
+  </div>
   <div class="flex justify-center py-8 bg-base-300">
     <app-paper></app-paper>
   </div>
