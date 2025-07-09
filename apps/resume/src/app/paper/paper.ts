@@ -224,32 +224,55 @@ export class Paper {
       ],
     },
   ];
+  copyUrlToClipboard() {
+    navigator.clipboard.writeText(window.location.href);
+  }
 
   exportToPDF() {
     if (!this.pdfContent) return;
 
-    const node = this.pdfContent.nativeElement;
+    const original = this.pdfContent.nativeElement;
+    const node = original.cloneNode(true) as HTMLElement;
+
+    // Optional: add export-specific class
     node.classList.add('printable');
+
     const scale = 3;
-    const style = {
+
+    // Off-screen clone
+    Object.assign(node.style, {
+      position: 'absolute',
+      top: '-9999px',
+      left: '-9999px',
+      zIndex: '-1',
       transform: `scale(${scale})`,
       transformOrigin: 'top left',
-      width: `${node.offsetWidth}px`,
-      height: `${node.offsetHeight}px`,
-    };
-    const faSvgs = node.querySelectorAll('svg.svg-inline--fa, svg.fa-icon');
-    faSvgs.forEach((svg: SVGElement) => {
-      const style = svg.style;
-      style.border = 'none';
     });
+
+    this.pdfContent.nativeElement.appendChild(node);
+
+    // Clean up conflicting SVG styles (Font Awesome, etc.)
+    const faSvgs = node.querySelectorAll('svg.svg-inline--fa, svg.fa-icon');
+    faSvgs.forEach((svg: any) => {
+      svg.style.border = 'none';
+    });
+
+    // High resolution export scale
+    const width = original.offsetWidth;
+    const height = original.offsetHeight;
+
     domtoimage
       .toPng(node, {
-        width: node.offsetWidth * scale,
-        height: node.offsetHeight * scale,
-        style,
+        width: width * scale,
+        height: height * scale,
+        style: {
+          width: `${width * scale}px`,
+          height: `${height * scale}px`,
+        },
       })
       .then((dataUrl: string) => {
-        node.classList.remove('printable');
+        this.pdfContent.nativeElement.removeChild(node); // Clean up
+
         const pdf = new jsPDF();
         const imgProps = pdf.getImageProperties(dataUrl);
         const pdfWidth = pdf.internal.pageSize.getWidth();
@@ -260,6 +283,7 @@ export class Paper {
       })
       .catch((error: any) => {
         console.error('Error generating PDF:', error);
+        document.body.removeChild(node); // Clean up even on failure
       });
   }
 }
