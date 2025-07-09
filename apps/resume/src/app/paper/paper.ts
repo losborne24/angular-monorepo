@@ -1,4 +1,9 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  ElementRef,
+  ViewChild,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import {
@@ -14,6 +19,9 @@ import {
   faPhone,
   faLocationDot,
 } from '@fortawesome/free-solid-svg-icons';
+import jsPDF from 'jspdf';
+import html2canvas from 'html2canvas';
+import domtoimage from 'dom-to-image-more';
 
 export const Icon = {
   faLinkedin,
@@ -45,6 +53,8 @@ export interface Links {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class Paper {
+  @ViewChild('pdfContent', { static: false }) pdfContent!: ElementRef;
+
   icon = Icon;
   contactDetails: ContactDetail[] = [
     { icon: Icon.faLocationDot, text: 'Surrey, England' },
@@ -212,4 +222,42 @@ export class Paper {
       ],
     },
   ];
+
+  exportToPDF() {
+    if (!this.pdfContent) return;
+
+    const node = this.pdfContent.nativeElement;
+    node.classList.add('printable');
+    const scale = 3;
+    const style = {
+      transform: `scale(${scale})`,
+      transformOrigin: 'top left',
+      width: `${node.offsetWidth}px`,
+      height: `${node.offsetHeight}px`,
+    };
+    const faSvgs = node.querySelectorAll('svg.svg-inline--fa, svg.fa-icon');
+    faSvgs.forEach((svg: SVGElement) => {
+      const style = svg.style;
+      style.border = 'none';
+    });
+    domtoimage
+      .toPng(node, {
+        width: node.offsetWidth * scale,
+        height: node.offsetHeight * scale,
+        style,
+      })
+      .then((dataUrl: string) => {
+        node.classList.remove('printable');
+        const pdf = new jsPDF();
+        const imgProps = pdf.getImageProperties(dataUrl);
+        const pdfWidth = pdf.internal.pageSize.getWidth();
+        const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
+
+        pdf.addImage(dataUrl, 'PNG', 0, 0, pdfWidth, pdfHeight);
+        pdf.save('exported-content.pdf');
+      })
+      .catch((error: any) => {
+        console.error('Error generating PDF:', error);
+      });
+  }
 }

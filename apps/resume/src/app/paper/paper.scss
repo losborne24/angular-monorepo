@@ -1,5 +1,12 @@
 .paper-container {
   // same as google-doc
   height: 1066px;
-  width: 826px;
+  width: 754px;
+}
+.printable,
+.printable * {
+  border: none !important;
+}
+.printable .card {
+  border-radius: 0 !important;
 }
