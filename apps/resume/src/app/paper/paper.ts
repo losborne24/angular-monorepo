@@ -283,7 +283,7 @@ export class Paper {
       })
       .catch((error: any) => {
         console.error('Error generating PDF:', error);
-        document.body.removeChild(node); // Clean up even on failure
+        this.pdfContent.nativeElement.removeChild(node); // Clean up even on failure
       });
   }
 }
