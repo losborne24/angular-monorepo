@@ -18,6 +18,7 @@ import {
   faEnvelope,
   faPhone,
   faLocationDot,
+  faFileArrowDown,
 } from '@fortawesome/free-solid-svg-icons';
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
@@ -32,6 +33,7 @@ export const Icon = {
   faLocationDot,
   faEnvelope,
   faPhone,
+  faFileArrowDown,
 } as const satisfies Record<string, IconDefinition>;
 
 export interface ContactDetail {
