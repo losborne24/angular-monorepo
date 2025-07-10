@@ -3,9 +3,25 @@
 @tailwind utilities;
 
 /* You can add global styles to this file, and also import other style files */
-p,
-ul,
-a,
-h3 {
-  font-size: 12.5px;
+
+@layer base {
+  .font-serif p,
+  .font-serif ul,
+  .font-serif a,
+  .font-serif h3 {
+    font-size: 12.5px;
+  }
+  .font-mono p,
+  .font-mono ul,
+  .font-mono a,
+  .font-mono h3 {
+    font-size: 10.7px;
+    word-break: break-word;
+  }
+  .font-sans p,
+  .font-sans ul,
+  .font-sans a,
+  .font-sans h3 {
+    font-size: 11.5px;
+  }
 }

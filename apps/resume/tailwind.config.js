@@ -11,9 +11,15 @@ module.exports = {
     extend: {
       fontFamily: {
         serif: ['Cambria', 'serif'],
+        mono: ['Menlo', 'monospace'],
+        sans: ['Helvetica', 'sans-serif'],
       },
     },
   },
+  // Safelist classes used dynamically in Angular templates.
+  // Prevents Tailwind from purging these classes during build
+  // since they are constructed dynamically (e.g., 'font-mono', 'font-sans').
+  safelist: ['font-sans', 'font-serif', 'font-mono'],
   plugins: [require('daisyui'), require('tailwind-scrollbar')],
   daisyui: {
     themes: [

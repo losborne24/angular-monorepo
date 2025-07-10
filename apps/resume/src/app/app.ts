@@ -13,7 +13,7 @@ import { CommonModule } from '@angular/common';
 export class App {
   protected title = 'resume';
   dataTheme = signal<string>('corporate');
-
+  selectedFont = signal<string>('serif');
   themes = [
     'light',
     'dark',
@@ -44,7 +44,11 @@ export class App {
     'nord',
     'sunset',
   ];
-  setTheme(theme: string) {
+  fonts = ['serif', 'sans', 'mono'];
+  setTheme(theme: string): void {
     this.dataTheme.set(theme);
+  }
+  setFont(font: string): void {
+    this.selectedFont.set(font);
   }
 }
