@@ -3,20 +3,6 @@
   height: 1066px;
   width: 754px;
 }
-/* Resize for small screens */
-@media screen and (max-width: 1000px) {
-  .paper-container {
-    position: absolute;
-    left: 0;
-    top: 0;
-    transform-origin: top left;
-  }
-  .utility-container {
-    position: absolute;
-    right: 84px;
-    top: 4px;
-  }
-}
 
 .printable,
 .printable * {
