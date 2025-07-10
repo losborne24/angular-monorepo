@@ -267,7 +267,7 @@ export class Paper {
         const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
 
         pdf.addImage(dataUrl, 'PNG', 0, 0, pdfWidth, pdfHeight);
-        pdf.save('exported-content.pdf');
+        pdf.save('Leith Osborne Resume.pdf');
       })
       .catch((error: any) => {
         console.error('Error generating PDF:', error);
