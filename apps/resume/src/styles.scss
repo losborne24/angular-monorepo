@@ -28,3 +28,7 @@
     font-size: 11.5px;
   }
 }
+
+.tooltip::before {
+  font-size: 0.75rem; /* Tailwind's text-xs = 12px = 0.75rem */
+}

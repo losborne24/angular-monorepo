@@ -34,7 +34,6 @@ export class App {
     'wireframe',
     'dracula',
     'cmyk',
-    'autumn',
     'business',
     'acid',
     'lemonade',

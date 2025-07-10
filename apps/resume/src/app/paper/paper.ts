@@ -2,6 +2,7 @@ import {
   ChangeDetectionStrategy,
   Component,
   ElementRef,
+  signal,
   ViewChild,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -56,6 +57,7 @@ export interface Links {
 })
 export class Paper {
   @ViewChild('pdfContent', { static: false }) pdfContent!: ElementRef;
+  copied = signal<boolean>(false);
 
   icon = Icon;
   contactDetails: ContactDetail[] = [
@@ -213,7 +215,14 @@ export class Paper {
     },
   ];
   copyUrlToClipboard() {
-    navigator.clipboard.writeText(window.location.href);
+    navigator.clipboard.writeText(window.location.href).then(() => {
+      this.copied.set(true);
+
+      // Revert tooltip after 1 seconds
+      setTimeout(() => {
+        this.copied.set(false);
+      }, 1000);
+    });
   }
 
   exportToPDF() {
@@ -248,30 +257,31 @@ export class Paper {
     // High resolution export scale
     const width = original.offsetWidth;
     const height = original.offsetHeight;
+    requestIdleCallback(() => {
+      domtoimage
+        .toPng(node, {
+          width: width * scale,
+          height: height * scale,
+          style: {
+            width: `${width * scale}px`,
+            height: `${height * scale}px`,
+          },
+        })
+        .then((dataUrl: string) => {
+          this.pdfContent.nativeElement.removeChild(node); // Clean up
 
-    domtoimage
-      .toPng(node, {
-        width: width * scale,
-        height: height * scale,
-        style: {
-          width: `${width * scale}px`,
-          height: `${height * scale}px`,
-        },
-      })
-      .then((dataUrl: string) => {
-        this.pdfContent.nativeElement.removeChild(node); // Clean up
+          const pdf = new jsPDF();
+          const imgProps = pdf.getImageProperties(dataUrl);
+          const pdfWidth = pdf.internal.pageSize.getWidth();
+          const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
 
-        const pdf = new jsPDF();
-        const imgProps = pdf.getImageProperties(dataUrl);
-        const pdfWidth = pdf.internal.pageSize.getWidth();
-        const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
-
-        pdf.addImage(dataUrl, 'PNG', 0, 0, pdfWidth, pdfHeight);
-        pdf.save('Leith Osborne Resume.pdf');
-      })
-      .catch((error: any) => {
-        console.error('Error generating PDF:', error);
-        this.pdfContent.nativeElement.removeChild(node); // Clean up even on failure
-      });
+          pdf.addImage(dataUrl, 'PNG', 0, 0, pdfWidth, pdfHeight);
+          pdf.save('Leith Osborne Resume.pdf');
+        })
+        .catch((error: any) => {
+          console.error('Error generating PDF:', error);
+          this.pdfContent.nativeElement.removeChild(node); // Clean up even on failure
+        });
+    });
   }
 }
