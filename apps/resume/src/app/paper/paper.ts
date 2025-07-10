@@ -159,11 +159,11 @@ export class Paper {
           period: 'OCT 2020 - APR 2022',
           techStack: [
             'Angular',
+            'Java',
+            'MySQL',
             'TypeScript',
             'HTML',
             'SCSS',
-            'Java',
-            'MySQL',
             'RxJS',
             'Node',
             'AWS',
