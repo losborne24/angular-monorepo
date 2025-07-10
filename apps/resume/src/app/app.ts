@@ -1,4 +1,9 @@
-import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  HostListener,
+  signal,
+} from '@angular/core';
 import { Paper } from './paper/paper';
 import { CommonModule } from '@angular/common';
 
@@ -14,6 +19,7 @@ export class App {
   protected title = 'resume';
   dataTheme = signal<string>('corporate');
   selectedFont = signal<string>('serif');
+  scaleFactor = signal<number>(1);
   themes = [
     'light',
     'dark',
@@ -44,6 +50,16 @@ export class App {
     'sunset',
   ];
   fonts = ['serif', 'sans', 'mono'];
+  constructor() {
+    this.onResize(null);
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event: any) {
+    const screenWidth = window.innerWidth;
+    this.scaleFactor.set(Math.min(1, screenWidth / 950));
+  }
+
   setTheme(theme: string): void {
     this.dataTheme.set(theme);
   }
