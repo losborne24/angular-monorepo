@@ -1,13 +1,13 @@
 <div
   [attr.data-theme]="dataTheme()"
   [class]="'font-' + selectedFont()"
-  class="bg-base-300"
+  class="bg-base-300 w-full"
 >
-  <div class="flex justify-center gap-2 w-full">
+  <div class="flex justify-center gap-2">
     <div class="flex-1 flex justify-center py-8">
       <app-paper></app-paper>
     </div>
-    <div class="flex flex-col gap-2 py-8">
+    <div class="font-picker flex flex-col gap-2 py-8">
       @for (font of fonts; track $index) {
 
       <button
@@ -21,7 +21,9 @@
       }
     </div>
 
-    <div class="flex-none scrollbar-none flex flex-col gap-2 pr-8 py-8">
+    <div
+      class="theme-picker flex-none scrollbar-none flex flex-col gap-2 pr-8 py-8"
+    >
       @for (theme of themes; track $index) {
       <button
         class="btn btn-sm btn-circle relative overflow-hidden border-2 border-neutral-content/75 hover:border-neutral-content"

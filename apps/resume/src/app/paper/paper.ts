@@ -2,6 +2,8 @@ import {
   ChangeDetectionStrategy,
   Component,
   ElementRef,
+  HostListener,
+  OnInit,
   signal,
   ViewChild,
 } from '@angular/core';
@@ -55,7 +57,7 @@ export interface Links {
   styleUrl: './paper.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class Paper {
+export class Paper implements OnInit {
   @ViewChild('pdfContent', { static: false }) pdfContent!: ElementRef;
   copied = signal<boolean>(false);
 
@@ -283,5 +285,20 @@ export class Paper {
           this.pdfContent.nativeElement.removeChild(node); // Clean up even on failure
         });
     });
+  }
+
+  scale = 1;
+
+  ngOnInit() {
+    this.onResize(null);
+  }
+  @HostListener('window:resize', ['$event'])
+  onResize(event: any) {
+    const width = window.innerWidth - 100; // adjust for extra buttons
+    if (width < 754) {
+      this.scale = width / 754;
+    } else {
+      this.scale = 1;
+    }
   }
 }
