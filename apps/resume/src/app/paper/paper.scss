@@ -3,6 +3,17 @@
   height: 1066px;
   width: 754px;
 }
+/* Resize for small screens */
+@media screen and (max-width: 1000px) {
+  .paper-container {
+    width: 100vw; /* 90% of the viewport width */
+    height: calc(100vw * (1066 / 754)); /* keep aspect ratio */
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+}
+
 .printable,
 .printable * {
   border: none !important;
