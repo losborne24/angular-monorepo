@@ -90,7 +90,6 @@ export class Paper {
             'TypeScript',
             'HTML',
             'SCSS',
-            'Figma',
             'Node',
             'AWS',
           ],
@@ -171,14 +170,9 @@ export class Paper {
           ],
           contributions: [
             {
-              category: 'Key Individual Contributor',
+              category: 'Frontend Modernisation',
               contribution:
-                'Played a central role in developing the core B2B cybersecurity policy monitoring SaaS product.',
-            },
-            {
-              category: 'Frontend Modernization',
-              contribution:
-                'Migrated a legacy Dojo.js codebase to Angular 11, incorporating modern technologies such as NGXS, RxJS, Angular Material, and Storybook to improve scalability, maintainability, and UI consistency.',
+                'Played a key role in developing a B2B cybersecurity policy monitoring SaaS product; migrated legacy Dojo.js codebase to Angular 11 using NGXS, RxJS, Angular Material, and Storybook to improve scalability, maintainability, and UI consistency.',
             },
             {
               category: 'API Integration',
