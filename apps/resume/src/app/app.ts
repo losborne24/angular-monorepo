@@ -4,8 +4,11 @@ import {
   HostListener,
   signal,
 } from '@angular/core';
-import { Paper } from './paper/paper';
+import { Paper } from './core/paper/paper';
 import { CommonModule } from '@angular/common';
+import { DAISYUI_THEMES } from './constants/daisyui-constants';
+import { ThemePicker } from './features/theme-picker/theme-picker';
+import { Theme } from './models/daisyui-models';
 
 @Component({
   selector: 'app-root',
@@ -13,57 +16,30 @@ import { CommonModule } from '@angular/common';
   styleUrl: './app.scss',
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [Paper, CommonModule],
+  imports: [Paper, CommonModule, ThemePicker],
 })
 export class App {
-  protected title = 'resume';
-  dataTheme = signal<string>('corporate');
-  selectedFont = signal<string>('serif');
-  scaleFactor = signal<number>(1);
-  themes = [
-    'light',
-    'dark',
-    'cupcake',
-    'bumblebee',
-    'emerald',
-    'corporate',
-    'synthwave',
-    'retro',
-    'cyberpunk',
-    'valentine',
-    'halloween',
-    'garden',
-    'forest',
-    'aqua',
-    'pastel',
-    'fantasy',
-    'wireframe',
-    'dracula',
-    'cmyk',
-    'business',
-    'acid',
-    'lemonade',
-    'night',
-    'winter',
-    'dim',
-    'nord',
-    'sunset',
-  ];
-  fonts = ['serif', 'sans', 'mono'];
-  constructor() {
-    this.onResize(null);
-  }
-
   @HostListener('window:resize', ['$event'])
   onResize(event: any) {
     const screenWidth = window.innerWidth;
     this.scaleFactor.set(Math.min(1, screenWidth / 950));
   }
 
-  setTheme(theme: string): void {
-    this.dataTheme.set(theme);
+  fonts: string[] = ['serif', 'sans', 'mono'];
+
+  selectedTheme = signal<Theme>('corporate');
+  selectedFont = signal<string>('serif');
+  scaleFactor = signal<number>(1);
+
+  constructor() {
+    this.onResize(null);
   }
+
   setFont(font: string): void {
     this.selectedFont.set(font);
+  }
+
+  onThemeChanged(theme: Theme): void {
+    this.selectedTheme.set(theme);
   }
 }

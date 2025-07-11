@@ -1,0 +1,18 @@
+<div class="flex flex-col gap-2">
+  @for (theme of themes; track $index) {
+  <button
+    class="btn btn-sm btn-circle relative overflow-hidden border-2 border-neutral-content/75 hover:border-neutral-content"
+    (click)="setTheme(theme)"
+    [ngClass]="{'ring-2 ring-neutral': theme === selectedTheme()}"
+    [attr.aria-label]="selectedTheme()"
+  >
+    <div [attr.data-theme]="theme">
+      <div class="absolute left-0 top-0 w-1/2 h-full bg-base-100"></div>
+      <div class="absolute left-1/2 top-0 w-1/2 h-1/4 bg-accent"></div>
+      <div class="absolute left-1/2 top-1/4 w-1/2 h-1/4 bg-secondary"></div>
+      <div class="absolute left-1/2 top-2/4 w-1/2 h-1/4 bg-neutral"></div>
+      <div class="absolute left-1/2 top-3/4 w-1/2 h-1/4 bg-neutral"></div>
+    </div>
+  </button>
+  }
+</div>

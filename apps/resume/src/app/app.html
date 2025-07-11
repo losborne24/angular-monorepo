@@ -1,5 +1,5 @@
 <div
-  [attr.data-theme]="dataTheme()"
+  [attr.data-theme]="selectedTheme()"
   [class]="'font-' + selectedFont()"
   class="bg-base-300 w-full"
 >
@@ -24,25 +24,10 @@
       }
     </div>
 
-    <div
-      class="theme-picker flex-none scrollbar-none flex flex-col gap-2 pr-8 py-8"
-    >
-      @for (theme of themes; track $index) {
-      <button
-        class="btn btn-sm btn-circle relative overflow-hidden border-2 border-neutral-content/75 hover:border-neutral-content"
-        (click)="setTheme(theme)"
-        [ngClass]="{'ring-2 ring-neutral': theme === dataTheme()}"
-        [attr.aria-label]="theme"
-      >
-        <div [attr.data-theme]="theme">
-          <div class="absolute left-0 top-0 w-1/2 h-full bg-base-100"></div>
-          <div class="absolute left-1/2 top-0 w-1/2 h-1/4 bg-accent"></div>
-          <div class="absolute left-1/2 top-1/4 w-1/2 h-1/4 bg-secondary"></div>
-          <div class="absolute left-1/2 top-2/4 w-1/2 h-1/4 bg-neutral"></div>
-          <div class="absolute left-1/2 top-3/4 w-1/2 h-1/4 bg-neutral"></div>
-        </div>
-      </button>
-      }
+    <div class="flex-none scrollbar-none flex flex-col gap-2 pr-8 py-8">
+      <app-theme-picker
+        (themeChanged)="onThemeChanged($event)"
+      ></app-theme-picker>
     </div>
   </div>
 </div>
