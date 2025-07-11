@@ -1,4 +1,10 @@
-import { Component, effect, output, signal } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  effect,
+  output,
+  signal,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DAISYUI_THEMES } from '@app/constants/daisyui-constants';
 import { Theme } from '@app/models/daisyui-models';
@@ -8,6 +14,7 @@ import { Theme } from '@app/models/daisyui-models';
   imports: [CommonModule],
   templateUrl: './theme-picker.html',
   styleUrl: './theme-picker.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ThemePicker {
   readonly themes: Theme[] = DAISYUI_THEMES;
@@ -20,7 +27,7 @@ export class ThemePicker {
     effect(() => this.themeChanged.emit(this.selectedTheme()));
   }
 
-  setTheme(newTheme: string): void {
+  setTheme(newTheme: Theme): void {
     this.selectedTheme.set(newTheme);
   }
 }

@@ -11,17 +11,7 @@
       <app-paper></app-paper>
     </div>
     <div class="font-picker flex flex-col gap-2 py-8">
-      @for (font of fonts; track $index) {
-
-      <button
-        class="btn btn-sm btn-circle text-lg bg-base-100 border-base-100 hover:bg-base-200 hover:border-base-200"
-        [class]="'font-' + font"
-        [ngClass]="{'ring-2 ring-neutral': font === selectedFont()}"
-        (click)="setFont(font)"
-      >
-        T
-      </button>
-      }
+      <app-font-picker (fontChanged)="onFontChanged($event)"></app-font-picker>
     </div>
 
     <div class="flex-none scrollbar-none flex flex-col gap-2 pr-8 py-8">

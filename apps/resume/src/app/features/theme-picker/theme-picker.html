@@ -1,7 +1,7 @@
 <div class="flex flex-col gap-2">
   @for (theme of themes; track $index) {
   <button
-    class="btn btn-sm btn-circle relative overflow-hidden border-2 border-neutral-content/75 hover:border-neutral-content"
+    class="circle-button relative overflow-hidden"
     (click)="setTheme(theme)"
     [ngClass]="{'ring-2 ring-neutral': theme === selectedTheme()}"
     [attr.aria-label]="selectedTheme()"

@@ -1,0 +1,13 @@
+<div class="font-picker flex flex-col gap-2">
+  @for (font of fonts; track $index) {
+
+  <button
+    class="circle-button"
+    [class]="'font-' + font"
+    [ngClass]="{'ring-2 ring-neutral': font === selectedFont()}"
+    (click)="setFont(font)"
+  >
+    T
+  </button>
+  }
+</div>

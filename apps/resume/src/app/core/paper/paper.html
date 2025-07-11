@@ -125,18 +125,18 @@
   </div>
   <div class="utility-container flex flex-col gap-2">
     <button
-      class="btn btn-sm btn-circle bg-base-100 border-base-100 hover:bg-base-200 hover:border-base-200 tooltip tooltip-right font-sans"
+      class="circle-button tooltip tooltip-right font-sans"
       data-tip="Export to pdf"
       (click)="exportToPDF()"
     >
-      <fa-icon size="lg" [icon]="icon.faFileArrowDown"></fa-icon>
+      <fa-icon [icon]="icon.faFileArrowDown"></fa-icon>
     </button>
     <button
-      class="btn btn-sm btn-circle bg-base-100 border-base-100 hover:bg-base-200 hover:border-base-200 tooltip tooltip-right font-sans"
+      class="circle-button tooltip tooltip-right font-sans"
       [attr.data-tip]="copied() ? 'Copied!': 'Copy to clipboard'"
       (click)="copyUrlToClipboard()"
     >
-      <fa-icon size="lg" [icon]="icon.faLink"></fa-icon>
+      <fa-icon [icon]="icon.faLink"></fa-icon>
     </button>
   </div>
 </div>

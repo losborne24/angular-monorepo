@@ -32,3 +32,11 @@
 .tooltip::before {
   font-size: 0.75rem; /* Tailwind's text-xs = 12px = 0.75rem */
 }
+
+@layer components {
+  .circle-button {
+    @apply btn btn-circle btn-sm w-8 h-8 text-lg 
+           bg-base-100 border-base-100 
+           hover:bg-base-200 hover:border-base-200;
+  }
+}
