@@ -1,0 +1,29 @@
+<div class="container">
+  <div class="canvas-container" [style.height]="canvasHeight + 'px'">
+    <canvas class="canvas" #myCanvas></canvas>
+    <div
+      #ghostContainer
+      class="ghost-container"
+      [style.width]="canvasWidth + 'px'"
+      [style.height]="canvasHeight + 'px'"
+    >
+      <div #grid class="grid-container" appDraggable>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+        <div class="box"></div>
+      </div>
+    </div>
+  </div>
+  <div class="btn-container" *ngIf="ctx">
+    <button mat-raised-button (click)="onUploadNew()">Upload New</button>
+    <button mat-raised-button color="accent" (click)="onComplete()">
+      Done
+    </button>
+  </div>
+</div>

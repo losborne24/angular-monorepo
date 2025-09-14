@@ -1,0 +1,71 @@
+<div class="container">
+  <div class="grid" *ngIf="!isComplete && gridImages.length === 9">
+    <div class="item" *ngFor="let image of gridImages; let i = index">
+      <div
+        [style.height]="gridSize / 3 + 'px'"
+        [style.width]="gridSize / 3 + 'px'"
+        *ngIf="image"
+        class="img-container"
+        appDraggableGridItem
+        [appGridPos]="i"
+        [appEmptyCell]="emptyPos"
+        (hasEmptyCellChanged)="hasEmptyCellChanged($event, i)"
+      >
+        <img class="item-img" [src]="image" />
+        <h1 *ngIf="this.isShowNumbers" class="txt-correct-pos">
+          {{ gridData[i] < removedPos ? gridData[i] + 1 : gridData[i] }}
+        </h1>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="isComplete">
+    <img
+      class="original-img"
+      [src]="originalImage"
+      [style.height]="gridSize + 'px'"
+      [style.width]="gridSize + 'px'"
+    />
+  </div>
+  <div class="btn-container">
+    <button *ngIf="!isComplete" mat-raised-button (click)="onUploadNew()">
+      Upload New
+    </button>
+    <button
+      *ngIf="isComplete"
+      mat-raised-button
+      color="accent"
+      (click)="onUploadNew()"
+    >
+      Upload New
+    </button>
+    <button
+      *ngIf="!isComplete"
+      mat-raised-button
+      color="accent"
+      (click)="onToggleNumbers()"
+    >
+      Toggle Numbers
+    </button>
+    <button
+      *ngIf="!isComplete"
+      mat-raised-button
+      color="accent"
+      (click)="shuffleItems()"
+      [disabled]="disableButtons"
+    >
+      Shuffle
+    </button>
+    <button *ngIf="isComplete" mat-raised-button (click)="shuffleItems()">
+      Reshuffle
+    </button>
+    <button
+      *ngIf="!isComplete"
+      mat-raised-button
+      color="accent"
+      (click)="onAutoSolve()"
+      [disabled]="disableButtons"
+    >
+      Solve
+    </button>
+  </div>
+</div>

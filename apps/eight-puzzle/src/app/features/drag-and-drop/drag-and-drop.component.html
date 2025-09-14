@@ -1,0 +1,52 @@
+<div class="container">
+  <div class="spacing-container"></div>
+  <div
+    appDragAndDrop
+    appDropZone
+    class="dnd-container"
+    (fileHover)="onFileHover($event)"
+    (fileDropped)="onFileDropped($event)"
+    [ngClass]="fileHover && 'dnd-file-hover'"
+  >
+    <div class="icon-upload-container">
+      <mat-icon
+        class="icon-upload"
+        [inline]="true"
+        [ngClass]="{
+          'icon-file-hover': fileHover,
+          'icon-file-dropped': fileDropped
+        }"
+        >add_photo_alternate</mat-icon
+      >
+    </div>
+    <p>Drag & Drop your image here</p>
+    <p>or</p>
+    <button
+      class="btn-browse"
+      mat-raised-button
+      color="accent"
+      (click)="inputImageUpload.click()"
+    >
+      Browse for an image
+    </button>
+    <!-- Hidden input for file upload-->
+    <input
+      (change)="onFileSelected($event)"
+      type="file"
+      #inputImageUpload
+      hidden
+      accept="image/*"
+    />
+  </div>
+  <div class="spacing-container"></div>
+  <div class="img-container">
+    <img
+      *ngFor="let img of demoImages"
+      class="demo-img"
+      [src]="img"
+      appDragAndDropDemoImages
+      hidden
+      (load)="onImageLoad($event)"
+    />
+  </div>
+</div>
