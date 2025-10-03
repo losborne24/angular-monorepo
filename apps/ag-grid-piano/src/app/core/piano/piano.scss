@@ -1,3 +1,10 @@
 :host {
   --ag-cell-horizontal-padding: 0;
+  --ag-row-border: none;
+  ::ng-deep .ag-cell, .ag-full-width-row .ag-cell-wrapper.ag-row-group {
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+    border-top: none !important;
+    border-bottom: none !important;
+  }
 }

@@ -10,7 +10,26 @@ import type { ColDef } from 'ag-grid-community';
 })
 export class Piano {
   // Row Data: The data to be displayed.
-  rowData = [{ 1: 'black', 3: 'black', 7: 'black', 9: 'black', 11: 'black', 15: 'black', 17: 'black'}, {}];
+  rowData = [
+    {
+      0: {color: 'white', colSpan: 2},
+      2: {color: 'black', colSpan: 2},
+      5:{color: 'black', colSpan: 2},
+      7:{color: 'white', colSpan: 2},
+      9:{color: 'white', colSpan: 2},
+      11: {color: 'black', colSpan: 2},
+      14: {color: 'black', colSpan: 2},
+      17: {color: 'black', colSpan: 2},
+      19: {color: 'white', colSpan: 2},
+    },
+    { 0: {color: 'white', colSpan: 3},
+      3: {color: 'white', colSpan: 3},
+      6: {color: 'white', colSpan: 3},
+      9: {color: 'white', colSpan: 3},
+      12: {color: 'white', colSpan: 3},
+      15: {color: 'white', colSpan: 3},
+      18: {color: 'white', colSpan: 3}},
+  ];
 
   // Column Definitions: Defines the columns to be displayed.
   columnDefs: ColDef[] = [
@@ -32,23 +51,38 @@ export class Piano {
     { field: '15' },
     { field: '16' },
     { field: '17' },
-    { field: '18' }
+    { field: '18' },
+    { field: '19' },
+    { field: '20' },
   ].map((colDef) => ({
     ...colDef,
     cellRenderer: PianoKeyRenderer,
-    width: 10,
+    width: 20,
+    minWidth:20,
+    colSpan: (params) => {
+      const colSpan = params.data[params.column.getColId()]?.colSpan;
+      if (colSpan ) {
+        // have all Russia age columns width 2
+        return colSpan;
+      }
+      // all other rows should be just normal
+      return 1;
+    },
   }));
 }
 
 function PianoKeyRenderer(params: any) {
- const color = params.data[params.column.getColId()];
+
+ const color = params.data[params.column.getColId()]?.color;
 
   const style = `
     background-color: ${color === 'black' ? 'black' : 'white'};
     height:100%;
     width:100%;
     padding:0;
-  `;
+    margin:0;
+   
+     `;
 
   return `<div style="${style}" ></div>`;
 }
