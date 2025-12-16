@@ -40,8 +40,15 @@ jobs:
       - name: 🧪 Run tests (Vitest)
         run: yarn nx run-many --target=test --all
 
+      - name: 🧹 Clean up Xvfb lock files
+        run: |
+          rm -f /tmp/.X99-lock /tmp/.X11-unix/X99 || true
+          pkill Xvfb || true
+
       - name: 🎭 Run e2e tests (Cypress)
         run: yarn nx run-many --target=e2e --all --parallel=1
+        env:
+          CYPRESS_VERIFY_TIMEOUT: 100000
 
       - name: 🛠️ Build home app
         run: yarn nx build home --configuration=production
