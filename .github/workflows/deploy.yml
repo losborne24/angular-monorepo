@@ -42,8 +42,9 @@ jobs:
 
       - name: 🧹 Clean up Xvfb lock files
         run: |
-          rm -f /tmp/.X99-lock /tmp/.X11-unix/X99 || true
-          pkill Xvfb || true
+          rm -f /tmp/.X*-lock /tmp/.X11-unix/X* || true
+          pkill -9 Xvfb || true
+          sleep 2
 
       - name: 🎭 Run e2e tests (Cypress)
         run: yarn nx run-many --target=e2e --all --parallel=1
