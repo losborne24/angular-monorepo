@@ -862,6 +862,7 @@ nx g &#64;nx/angular:component ui/src/lib/button</pre>
         </p>
       </div>
     </div>
+    TEMP CHANGE
   `,
   styles: [],
   encapsulation: ViewEncapsulation.None,
