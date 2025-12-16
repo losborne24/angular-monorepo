@@ -8,20 +8,7 @@ import {
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import {
-  faCodepen,
-  faGithub,
-  faLinkedin,
-  IconDefinition,
-} from '@fortawesome/free-brands-svg-icons';
-import {
-  faGlobe,
-  faLink,
-  faEnvelope,
-  faPhone,
-  faLocationDot,
-  faFileArrowDown,
-} from '@fortawesome/free-solid-svg-icons';
+
 import jsPDF from 'jspdf';
 import html2canvas from 'html2canvas';
 import domtoimage from 'dom-to-image-more';
@@ -32,18 +19,7 @@ import type {
   Experience,
   RightPanelSection,
 } from './paper-types';
-
-export const Icon = {
-  faLinkedin,
-  faGlobe,
-  faGithub,
-  faCodepen,
-  faLink,
-  faLocationDot,
-  faEnvelope,
-  faPhone,
-  faFileArrowDown,
-} as const satisfies Record<string, IconDefinition>;
+import { Icon } from '@app/constants/icon-constants';
 
 @Component({
   selector: 'app-paper',
@@ -54,13 +30,15 @@ export const Icon = {
 })
 export class Paper {
   @ViewChild('pdfContent', { static: false }) pdfContent!: ElementRef;
+
+  readonly icon = Icon;
+  readonly contactDetails = CONTACT_DETAILS;
+  readonly links = LINKS;
+  readonly experience = EXPERIENCE;
+  readonly rightPanel = RIGHT_PANEL;
+
   copied = signal<boolean>(false);
 
-  icon = Icon;
-  contactDetails = CONTACT_DETAILS;
-  links = LINKS;
-  experience = EXPERIENCE;
-  rightPanel = RIGHT_PANEL;
   copyUrlToClipboard() {
     navigator.clipboard.writeText(window.location.href).then(() => {
       this.copied.set(true);

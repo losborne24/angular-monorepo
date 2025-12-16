@@ -1,4 +1,5 @@
-import { Icon } from './paper';
+import { Icon } from '@app/constants/icon-constants';
+
 import type {
   ContactDetail,
   Links,
