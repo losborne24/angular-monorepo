@@ -70,10 +70,13 @@ describe('CopyUrlDirective', () => {
     });
 
     it('should handle clipboard errors gracefully', async () => {
-      const consoleErrorSpy = vi.spyOn(console, 'error').mockImplementation(() => {});
-      vi
-        .spyOn(navigator.clipboard, 'writeText')
-        .mockRejectedValue(new Error('Clipboard error'));
+      const consoleErrorSpy = vi
+        .spyOn(console, 'error')
+        .mockImplementation(() => null);
+
+      vi.spyOn(navigator.clipboard, 'writeText').mockRejectedValue(
+        new Error('Clipboard error')
+      );
 
       await directive.copy();
 

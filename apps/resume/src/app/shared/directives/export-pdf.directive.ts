@@ -1,4 +1,4 @@
-import { Directive, ElementRef, input } from '@angular/core';
+import { Directive, ElementRef, inject, input } from '@angular/core';
 import jsPDF from 'jspdf';
 import domtoimage from 'dom-to-image-more';
 
@@ -8,10 +8,10 @@ import domtoimage from 'dom-to-image-more';
   exportAs: 'appExportPdf',
 })
 export class ExportPdfDirective {
+  private elementRef = inject(ElementRef<HTMLElement>);
+
   filename = input<string>('document.pdf');
   scale = input<number>(3);
-
-  constructor(private elementRef: ElementRef<HTMLElement>) {}
 
   export(): void {
     if (!this.elementRef) return;
@@ -43,8 +43,10 @@ export class ExportPdfDirective {
       const svgElements = node.querySelectorAll(
         'svg.svg-inline--fa, svg.fa-icon'
       );
-      svgElements.forEach((svg: any) => {
-        svg.style.border = 'none';
+      svgElements.forEach((svg) => {
+        if (svg instanceof SVGElement) {
+          svg.style.border = 'none';
+        }
       });
     };
 
