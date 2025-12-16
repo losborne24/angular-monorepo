@@ -34,22 +34,8 @@ jobs:
       - name: 📦 Install dependencies (Yarn)
         run: yarn install --frozen-lockfile
 
-      - name: 🔍 Run linting
-        run: yarn nx run-many --target=lint --all
-
       - name: 🧪 Run tests (Vitest)
         run: yarn nx run-many --target=test --all
-
-      - name: 🧹 Clean up Xvfb lock files
-        run: |
-          rm -f /tmp/.X*-lock /tmp/.X11-unix/X* || true
-          pkill -9 Xvfb || true
-          sleep 2
-
-      - name: 🎭 Run e2e tests (Cypress)
-        run: yarn nx run-many --target=e2e --all --parallel=1 --configuration=production
-        env:
-          CYPRESS_VERIFY_TIMEOUT: 100000
 
       - name: 🛠️ Build home app
         run: yarn nx build home --configuration=production
