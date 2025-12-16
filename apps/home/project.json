@@ -83,7 +83,6 @@
       }
     },
     "serve-static": {
-      "continuous": true,
       "executor": "@nx/web:file-server",
       "options": {
         "buildTarget": "home:build",
