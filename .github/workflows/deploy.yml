@@ -34,8 +34,14 @@ jobs:
       - name: 📦 Install dependencies (Yarn)
         run: yarn install --frozen-lockfile
 
+      - name: 🔍 Run linting
+        run: yarn nx run-many --target=lint --all
+
       - name: 🧪 Run tests (Vitest)
         run: yarn nx run-many --target=test --all
+
+      - name: 🎭 Run e2e tests (Cypress)
+        run: yarn nx run-many --target=e2e --all --parallel=1
 
       - name: 🛠️ Build home app
         run: yarn nx build home --configuration=production

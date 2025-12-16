@@ -10,8 +10,8 @@ export default defineConfig({
         production: 'yarn nx run ag-grid-piano:serve-static',
       },
       ciWebServerCommand: 'yarn nx run ag-grid-piano:serve-static',
-      ciBaseUrl: 'http://localhost:4200',
+      ciBaseUrl: 'http://localhost:4202',
     }),
-    baseUrl: 'http://localhost:4200',
+    baseUrl: 'http://localhost:4202',
   },
 });

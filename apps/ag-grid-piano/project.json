@@ -81,7 +81,7 @@
       "executor": "@nx/web:file-server",
       "options": {
         "buildTarget": "ag-grid-piano:build",
-        "port": 4200,
+        "port": 4202,
         "staticFilePath": "dist/apps/ag-grid-piano/browser",
         "spa": true
       }
