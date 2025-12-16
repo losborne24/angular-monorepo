@@ -1,40 +1,35 @@
 <div class="flex gap-2">
-  <div
+  <article
     #pdfExporter="appExportPdf"
     appExportPdf
     [filename]="'Leith Osborne Resume.pdf'"
     [scale]="3"
+    class="paper-container flex-row card bg-base-100 text-neutral overflow-hidden"
   >
-    <div
-      class="paper-container flex-row card bg-base-100 text-neutral overflow-hidden"
+    <main
+      class="flex flex-col flex-none basis-[72%] p-8 gap-8 text-base-content"
     >
-      <div
-        class="flex flex-col flex-none basis-[72%] p-8 gap-8 text-base-content"
-      >
-        <section>
-          <h1 class="text-5xl mb-2"><strong>Leith Osborne</strong></h1>
-          <h3>Full-Stack / UI Engineer</h3>
-        </section>
-        <section class="flex flex-col gap-2">
-          <h3 class="text-primary"><strong>EXPERIENCE</strong></h3>
-          <div class="flex flex-col gap-4">
-            @for(company of experience; track $index) {
-            <div>
-              <h2><strong>{{company.companyName}}</strong></h2>
-              <div
-                class="flex flex-col gap-2 text-base-content text-opacity-75"
-              >
-                @for(position of company.positions; track $index) {
-                <div>
-                  <div class="flex items-center justify-between">
-                    <h3 class="text-base-content">{{position.position}}</h3>
-                    <p class="text-xs">
-                      @for (tech of position.techStack; track $index; let isLast
-                      = $last) { {{tech }} @if(!isLast) { |} }
-                    </p>
-                  </div>
-                  <p class="text-[0.625rem]">{{position.period}}</p>
-                </div>
+      <header>
+        <h1 class="text-5xl mb-2"><strong>Leith Osborne</strong></h1>
+        <h3>Full-Stack / UI Engineer</h3>
+      </header>
+      <section class="flex flex-col gap-2">
+        <h3 class="text-primary"><strong>EXPERIENCE</strong></h3>
+        <div class="flex flex-col gap-4">
+          @for(company of experience; track $index) {
+          <article>
+            <h2><strong>{{company.companyName}}</strong></h2>
+            <div class="flex flex-col gap-2 text-base-content text-opacity-75">
+              @for(position of company.positions; track $index) {
+              <div>
+                <header class="flex items-center justify-between">
+                  <h3 class="text-base-content">{{position.position}}</h3>
+                  <p class="text-xs">
+                    @for (tech of position.techStack; track $index; let isLast =
+                    $last) { {{tech }} @if(!isLast) { |} }
+                  </p>
+                </header>
+                <time class="text-[0.625rem]">{{position.period}}</time>
                 <ul>
                   @for(contribution of position.contributions; track $index) {
                   <li>
@@ -43,92 +38,92 @@
                   </li>
                   }
                 </ul>
-                }
               </div>
-            </div>
-            }
-          </div>
-        </section>
-        <section class="flex flex-col gap-2">
-          <h3 class="text-primary"><strong>LINKS</strong></h3>
-          <div class="flex flex-col text-base-content">
-            @for (link of links; track $index) {
-            <div
-              class="flex items-center gap-2 text-base-content text-opacity-90"
-            >
-              <fa-icon [icon]="link.icon"></fa-icon>
-              <a target="_blank" [href]="link.href">
-                <span class="text-secondary">{{link.href}}</span>
-              </a>
-            </div>
-            }
-          </div>
-        </section>
-      </div>
-      <div
-        class="flex flex-col flex-none basis-[28%] bg-neutral text-neutral-content text-opacity-90 p-8 gap-8"
-      >
-        <section>
-          @for (detail of contactDetails; track $index) {
-          <div class="flex gap-2 items-center">
-            <fa-icon [icon]="detail.icon"></fa-icon>
-            @if(detail.href) {
-            <a target="_blank" class="text-secondary" [href]="detail.href"
-              >{{detail.text}}</a
-            >
-            } @else {
-            <p>{{detail.text}}</p>
-            }
-          </div>
-          }
-        </section>
-        <section class="flex flex-col gap-2">
-          <h3 class="text-accent"><strong>EDUCATION</strong></h3>
-          <div class="flex flex-col gap-4">
-            <div class="flex flex-col gap-2">
-              <div>
-                <h2>
-                  <strong class="text-neutral-content"
-                    >Durham University</strong
-                  >
-                </h2>
-                <p class="text-[0.625rem]">OCT 2017 - JUL 2020</p>
-              </div>
-              <p>BSc Computer Science, First Class Honours</p>
-            </div>
-            <div class="flex flex-col gap-2">
-              <div>
-                <h2>
-                  <strong class="text-neutral-content"
-                    >The Ashcombe School, Surrey</strong
-                  >
-                </h2>
-                <p class="text-[0.625rem]">SEP 2010 - AUG 2017</p>
-              </div>
-              <ul>
-                <li>Further Mathematics A*</li>
-                <li>Mathematics A*</li>
-                <li>Computer Science A</li>
-              </ul>
-            </div>
-          </div>
-        </section>
-        <section class="flex flex-col gap-8">
-          @for(section of rightPanel; track $index ){
-          <div class="flex flex-col gap-2">
-            <h3 class="text-accent"><strong>{{section.header}}</strong></h3>
-            <ul>
-              @for(item of section.items; track $index) {
-              <li>{{item}}</li>
               }
-            </ul>
-          </div>
+            </div>
+          </article>
           }
+        </div>
+      </section>
+      <section class="flex flex-col gap-2">
+        <h3 class="text-primary"><strong>LINKS</strong></h3>
+        <nav class="flex flex-col text-base-content">
+          @for (link of links; track $index) {
+          <a
+            target="_blank"
+            [href]="link.href"
+            class="flex items-center gap-2 text-base-content text-opacity-90"
+          >
+            <fa-icon [icon]="link.icon"></fa-icon>
+            <span class="text-secondary">{{link.href}}</span>
+          </a>
+          }
+        </nav>
+      </section>
+    </main>
+    <aside
+      class="flex flex-col flex-none basis-[28%] bg-neutral text-neutral-content text-opacity-90 p-8 gap-8"
+    >
+      <address>
+        @for (detail of contactDetails; track $index) {
+        <div class="flex gap-2 items-center">
+          <div class="icon-container">
+            <fa-icon [icon]="detail.icon"></fa-icon>
+          </div>
+          @if(detail.href) {
+          <a target="_blank" class="text-secondary" [href]="detail.href"
+            >{{detail.text}}</a
+          >
+          } @else {
+          <p>{{detail.text}}</p>
+          }
+        </div>
+        }
+      </address>
+      <section class="flex flex-col gap-2">
+        <h3 class="text-accent"><strong>EDUCATION</strong></h3>
+        <div class="flex flex-col gap-4">
+          <article class="flex flex-col gap-2">
+            <header>
+              <h2>
+                <strong class="text-neutral-content">Durham University</strong>
+              </h2>
+              <time class="text-[0.625rem]">OCT 2017 - JUL 2020</time>
+            </header>
+            <p>BSc Computer Science, First Class Honours</p>
+          </article>
+          <article class="flex flex-col gap-2">
+            <header>
+              <h2>
+                <strong class="text-neutral-content"
+                  >The Ashcombe School, Surrey</strong
+                >
+              </h2>
+              <time class="text-[0.625rem]">SEP 2010 - AUG 2017</time>
+            </header>
+            <ul>
+              <li>Further Mathematics A*</li>
+              <li>Mathematics A*</li>
+              <li>Computer Science A</li>
+            </ul>
+          </article>
+        </div>
+      </section>
+      <section class="flex flex-col gap-8">
+        @for(section of rightPanel; track $index ){
+        <section class="flex flex-col gap-2">
+          <h3 class="text-accent"><strong>{{section.header}}</strong></h3>
+          <ul>
+            @for(item of section.items; track $index) {
+            <li>{{item}}</li>
+            }
+          </ul>
         </section>
-      </div>
-    </div>
-  </div>
-  <div class="utility-container flex flex-col gap-2">
+        }
+      </section>
+    </aside>
+  </article>
+  <nav class="utility-container flex flex-col gap-2">
     <button
       class="circle-button tooltip tooltip-right font-sans"
       data-tip="Export to pdf"
@@ -137,11 +132,13 @@
       <fa-icon [icon]="icon.faFileArrowDown"></fa-icon>
     </button>
     <button
+      #urlCopier="appCopyUrl"
+      appCopyUrl
       class="circle-button tooltip tooltip-right font-sans"
-      [attr.data-tip]="copied() ? 'Copied!': 'Copy to clipboard'"
-      (click)="copyUrlToClipboard()"
+      [attr.data-tip]="urlCopier.copied() ? 'Copied!': 'Copy to clipboard'"
+      (click)="urlCopier.copy()"
     >
       <fa-icon [icon]="icon.faLink"></fa-icon>
     </button>
-  </div>
+  </nav>
 </div>
