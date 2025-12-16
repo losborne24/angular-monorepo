@@ -4188,26 +4188,6 @@ adm-zip@^0.5.10:
   resolved "https://registry.yarnpkg.com/adm-zip/-/adm-zip-0.5.16.tgz#0b5e4c779f07dedea5805cdccb1147071d94a909"
   integrity sha512-TGw5yVi4saajsSEgz25grObGHEUaDrniwvA2qwSC060KfqGPdglhvPMA2lPIoxs3PQIItj2iag35fONcQqgUaQ==
 
-ag-charts-types@12.2.0:
-  version "12.2.0"
-  resolved "https://registry.yarnpkg.com/ag-charts-types/-/ag-charts-types-12.2.0.tgz#e62139f604256bf56ec86a616f5150009f6a4209"
-  integrity sha512-d2qQrQirt9wP36YW5HPuOvXsiajyiFnr1CTsoCbs02bavPDz7Lk2jHp64+waM4YKgXb3GN7gafbBI9Qgk33BmQ==
-
-ag-grid-angular@^34.2.0:
-  version "34.2.0"
-  resolved "https://registry.yarnpkg.com/ag-grid-angular/-/ag-grid-angular-34.2.0.tgz#ed3b9aaecae31eeed812d03480872cc9f88c1cda"
-  integrity sha512-yCOPwVqxQ/+sTlXwyKi4wT0WRfgDZvLmND6f1evKZKBcI9pWsK/BQ1Oy++BfR+XUIPIdH8Eu3v4tSk1QpLyFdg==
-  dependencies:
-    ag-grid-community "34.2.0"
-    tslib "^2.3.0"
-
-ag-grid-community@34.2.0:
-  version "34.2.0"
-  resolved "https://registry.yarnpkg.com/ag-grid-community/-/ag-grid-community-34.2.0.tgz#708986ea8f0212313aa92c581027f3d7d35a4ce2"
-  integrity sha512-peS7THEMYwpIrwLQHmkRxw/TlOnddD/F5A88RqlBxf8j+WqVYRWMOOhU5TqymGcha7z2oZ8IoL9ROl3gvtdEjg==
-  dependencies:
-    ag-charts-types "12.2.0"
-
 agent-base@6:
   version "6.0.2"
   resolved "https://registry.yarnpkg.com/agent-base/-/agent-base-6.0.2.tgz#49fff58577cfee3f37176feab4c22e00f86d7f77"
