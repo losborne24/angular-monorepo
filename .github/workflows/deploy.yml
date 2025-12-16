@@ -47,7 +47,7 @@ jobs:
           sleep 2
 
       - name: 🎭 Run e2e tests (Cypress)
-        run: yarn nx run-many --target=e2e --all --parallel=1
+        run: yarn nx run-many --target=e2e --all --parallel=1 --configuration=production
         env:
           CYPRESS_VERIFY_TIMEOUT: 100000
 
