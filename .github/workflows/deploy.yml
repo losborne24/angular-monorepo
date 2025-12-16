@@ -34,6 +34,9 @@ jobs:
       - name: 📦 Install dependencies (Yarn)
         run: yarn install --frozen-lockfile
 
+      - name: 🧪 Run tests (Vitest)
+        run: yarn nx run-many --target=test --all
+
       - name: 🛠️ Build home app
         run: yarn nx build home --configuration=production
 
