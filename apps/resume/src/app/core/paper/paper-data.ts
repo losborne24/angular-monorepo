@@ -8,7 +8,7 @@ import type {
 } from './paper-types';
 
 export const CONTACT_DETAILS: ContactDetail[] = [
-  { icon: Icon.faLocationDot, text: 'Surrey, England' },
+  { icon: Icon.faLocationDot, text: 'London, UK' },
   { icon: Icon.faPhone, text: '+44 7494 391933' },
   {
     icon: Icon.faEnvelope,
@@ -28,16 +28,17 @@ export const LINKS: Links[] = [
 
 export const EXPERIENCE: Experience[] = [
   {
-    companyName: 'OpenGamma',
+    companyName: 'OpenGamma Limited',
     positions: [
       {
-        position: 'Full-Stack Engineer',
+        position: 'Software Developer',
         period: 'JAN 2025 - PRESENT',
         techStack: [
           'Angular',
+          'TypeScript',
+          'RxJS',
           'Java',
           'PostgreSQL',
-          'TypeScript',
           'Node',
           'AWS',
         ],
@@ -45,22 +46,22 @@ export const EXPERIENCE: Experience[] = [
           {
             category: 'Full UI Ownership',
             contribution:
-              "Backbone of a lean 1.5–3 developer team, holding complete UI ownership of the company's flagship fintech SaaS product generating multi-million ARR.",
+              'Core member of a lean 1.5–3 developer team, owning the complete UI of the company’s flagship multi-million ARR margin optimisation analytics SaaS platform.',
           },
           {
             category: 'BI Integration',
             contribution:
-              'Built dynamic filter support for embedded AWS QuickSight dashboards, integrating date pickers and calculation logic with API-driven parameterisation for interactive analytics.',
+              'Implemented custom date pickers and calculation logic to drive dynamic API parameterisation in embedded AWS QuickSight dashboards',
           },
           {
-            category: 'Full-Stack Development',
+            category: 'Tenant-Specific UI Configuration',
             contribution:
-              'Led full-stack development of a dynamic UI profiles system, allowing non-engineering teams to configure tenant-specific profiles, modules, menus, and dashboards via static data.',
+              'Led extension of configuration management to support dynamic, tenant-specific profiles, modules, menus, and dashboards across the multi-tenant UI platform.',
           },
         ],
       },
       {
-        position: 'UI Developer',
+        position: 'Front-End Developer',
         period: 'APR 2022 - JAN 2025',
         techStack: [
           'Angular',
@@ -73,24 +74,24 @@ export const EXPERIENCE: Experience[] = [
         ],
         contributions: [
           {
-            category: 'Product Development',
+            category: 'On-Demand Risk Simulation Tools',
             contribution:
-              'Contributed to the design and delivery of client-facing risk tools, including a portfolio editor and on-demand calculation runner, allowing users to perform real-time stressed margin analysis on modified portfolios.',
+              'Designed and delivered a portfolio editor and calculation runner, enabling users to perform stressed margin analysis on modified portfolios.',
           },
           {
-            category: 'Configuration & Settings Management',
+            category: 'Tenant-Level Configuration Management',
             contribution:
               'Built a dynamic, tenant-level settings interface using editable AG Grid tables to manage complex business and system configurations, incorporating custom field components, validations, attributes, and integrated review/approval workflows.',
           },
           {
-            category: 'Cloud Hosting',
+            category: 'Micro-Frontend Architecture & Platform Decoupling',
             contribution:
-              "Delivered a scalable, static cloud hosting solution for the Angular-based Treasury SPA using Amazon S3 and CloudFront, facilitating its evolution into the organization's core platform.",
+              'Led extraction of the Call Management platform from a monorepo into an independently deployable micro-frontend, including separation of shared frontend libraries into standalone repositories to enable modular releases and scalable delivery.',
           },
           {
             category: 'Design Systems',
             contribution:
-              'Developed a Figma component library derived from our reusable, stateless UI components, promoting design-development consistency and streamlining mockup creation.',
+              'Created a Figma component library from reusable stateless UI components, standardising design-to-development consistency and accelerating mockup creation',
           },
         ],
       },
@@ -104,10 +105,10 @@ export const EXPERIENCE: Experience[] = [
         period: 'OCT 2020 - APR 2022',
         techStack: [
           'Angular',
-          'Java',
-          'MySQL',
           'TypeScript',
           'RxJS',
+          'Java',
+          'MySQL',
           'Node',
           'AWS',
         ],
