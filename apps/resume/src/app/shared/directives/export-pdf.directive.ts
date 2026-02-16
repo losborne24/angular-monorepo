@@ -1,6 +1,4 @@
 import { Directive, ElementRef, inject, input } from '@angular/core';
-import jsPDF from 'jspdf';
-import domtoimage from 'dom-to-image-more';
 
 @Directive({
   selector: '[appExportPdf]',
@@ -11,95 +9,74 @@ export class ExportPdfDirective {
   private elementRef = inject(ElementRef<HTMLElement>);
 
   filename = input<string>('document.pdf');
-  scale = input<number>(3);
 
   export(): void {
     if (!this.elementRef) return;
 
-    const original = this.elementRef.nativeElement;
-    const clonedNode = this.createOffscreenClone(original);
+    const element = this.elementRef.nativeElement;
 
-    this.elementRef.nativeElement.appendChild(clonedNode);
+    // Create a new window with the content to print
+    const printWindow = window.open('', '_blank');
+    if (!printWindow) {
+      console.error('Failed to open print window');
+      return;
+    }
 
-    requestIdleCallback(() => {
-      this.generatePdfFromNode(original, clonedNode);
-    });
-  }
+    // Clone the element and its styles
+    const clone = element.cloneNode(true) as HTMLElement;
 
-  private createOffscreenClone(original: HTMLElement): HTMLElement {
-    const clone = original.cloneNode(true) as HTMLElement;
-    clone.classList.add('printable');
-
-    Object.assign(clone.style, {
-      position: 'absolute',
-      top: '-9999px',
-      left: '-9999px',
-      zIndex: '-1',
-      transform: `scale(${this.scale()})`,
-      transformOrigin: 'top left',
-    });
-
-    const cleanupSvgStyles = (node: HTMLElement): void => {
-      const svgElements = node.querySelectorAll(
-        'svg.svg-inline--fa, svg.fa-icon'
-      );
-      svgElements.forEach((svg) => {
-        if (svg instanceof SVGElement) {
-          svg.style.border = 'none';
+    // Get all stylesheets from the current document
+    const styles = Array.from(document.styleSheets)
+      .map((styleSheet) => {
+        try {
+          return Array.from(styleSheet.cssRules)
+            .map((rule) => rule.cssText)
+            .join('\n');
+        } catch {
+          // Handle CORS issues with external stylesheets
+          const link = document.createElement('link');
+          link.rel = 'stylesheet';
+          link.href = (styleSheet as CSSStyleSheet).href || '';
+          return link.outerHTML;
         }
-      });
+      })
+      .join('\n');
+
+    // Build the print document using modern DOM manipulation
+    const doc = printWindow.document;
+    doc.open();
+    doc.close();
+
+    // Set up the document structure
+    doc.documentElement.innerHTML = `
+      <head>
+        <title>${this.filename()}</title>
+        <style>
+          ${styles}
+          @media print {
+            body {
+              margin: 0;
+              padding: 0;
+            }
+            @page {
+              size: A4;
+              margin: 0;
+            }
+          }
+        </style>
+      </head>
+      <body>
+        ${clone.outerHTML}
+      </body>
+    `;
+
+    // Wait for content to load then trigger print
+    printWindow.onload = () => {
+      setTimeout(() => {
+        printWindow.print();
+        // Close window after printing or canceling
+        printWindow.onafterprint = () => printWindow.close();
+      }, 250);
     };
-
-    cleanupSvgStyles(clone);
-
-    return clone;
-  }
-
-  private async generatePdfFromNode(
-    original: HTMLElement,
-    clone: HTMLElement
-  ): Promise<void> {
-    try {
-      const dataUrl = await this.nodeToImage(original, clone);
-      await this.createAndSavePdf(dataUrl);
-    } catch (error) {
-      console.error('Error generating PDF:', error);
-    } finally {
-      this.removeClone(clone);
-    }
-  }
-
-  private async nodeToImage(
-    original: HTMLElement,
-    clone: HTMLElement
-  ): Promise<string> {
-    const width = original.offsetWidth;
-    const height = original.offsetHeight;
-    const scale = this.scale();
-
-    return domtoimage.toPng(clone, {
-      width: width * scale,
-      height: height * scale,
-      style: {
-        width: `${width * scale}px`,
-        height: `${height * scale}px`,
-      },
-    });
-  }
-
-  private async createAndSavePdf(dataUrl: string): Promise<void> {
-    const pdf = new jsPDF();
-    const imgProps = pdf.getImageProperties(dataUrl);
-    const pdfWidth = pdf.internal.pageSize.getWidth();
-    const pdfHeight = (imgProps.height * pdfWidth) / imgProps.width;
-
-    pdf.addImage(dataUrl, 'PNG', 0, 0, pdfWidth, pdfHeight);
-    pdf.save(this.filename());
-  }
-
-  private removeClone(clone: HTMLElement): void {
-    if (this.elementRef?.nativeElement.contains(clone)) {
-      this.elementRef.nativeElement.removeChild(clone);
-    }
   }
 }
