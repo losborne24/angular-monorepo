@@ -84,7 +84,7 @@ export const EXPERIENCE: Experience[] = [
               'Built a dynamic, tenant-level settings interface using editable AG Grid tables to manage complex business and system configurations, incorporating custom field components, validations, attributes, and integrated review/approval workflows.',
           },
           {
-            category: 'Micro-Frontend Architecture & Platform Decoupling',
+            category: 'Micro-Frontend Architecture',
             contribution:
               'Led extraction of the Call Management platform from a monorepo into an independently deployable micro-frontend, including separation of shared frontend libraries into standalone repositories to enable modular releases and scalable delivery.',
           },
