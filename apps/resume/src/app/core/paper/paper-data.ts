@@ -51,12 +51,12 @@ export const EXPERIENCE: Experience[] = [
           {
             category: 'BI Integration',
             contribution:
-              'Implemented custom date pickers and calculation logic to drive dynamic API parameterisation in embedded AWS QuickSight dashboards',
+              'Implemented custom date pickers and calculation logic to drive dynamic API parameterisation in embedded AWS QuickSight dashboards.',
           },
           {
             category: 'Tenant-Specific UI Configuration',
             contribution:
-              'Led extension of configuration management to support dynamic, tenant-specific profiles, modules, menus, and dashboards across the multi-tenant UI platform.',
+              'Owned and delivered the full-stack implementation (database layer, data modeling, API services, and frontend UI orchestration) to power dynamic tenant-specific profiles, modules, navigation menus, and dashboards within a scalable multi-tenant ecosystem.',
           },
         ],
       },
@@ -81,7 +81,7 @@ export const EXPERIENCE: Experience[] = [
           {
             category: 'Tenant-Level Configuration Management',
             contribution:
-              'Built a dynamic, tenant-level settings interface using editable AG Grid tables to manage complex business and system configurations, incorporating custom field components, validations, attributes, and integrated review/approval workflows.',
+              'Built a dynamic, tenant-level settings UI using editable AG Grid tables to manage complex business and system configurations, incorporating custom field components, validations, attributes, and integrated review/approval workflows.',
           },
           {
             category: 'Micro-Frontend Architecture',
